@@ -144,23 +144,24 @@ index 41d9ea8..47951ef 100644
  #include "sgpp/base/opencl/OCLBufferWrapperSD.hpp"
  #include "sgpp/base/opencl/OCLManagerMultiPlatform.hpp"
 diff --git a/optimization/build/pysgpp/optimization.i b/optimization/build/pysgpp/optimization.i
-index 8602151..abb35ae 100755
+index 8602151..5ac783e 100755
 --- a/optimization/build/pysgpp/optimization.i
 +++ b/optimization/build/pysgpp/optimization.i
-@@ -4,9 +4,13 @@
+@@ -4,6 +4,14 @@
  // sgpp.sparsegrids.org
  
  // to disable OpenMP multi-threading within Python
-+#ifdef _OPENMP
++%{
++#ifndef _OPENMP
++static void omp_set_num_threads(int num_threads)
++{
++}
++#endif
++%}
++
  void omp_set_num_threads(int num_threads);
-+#endif
  %init %{
-+#ifdef _OPENMP
      omp_set_num_threads(1);
-+#endif
- %}
- 
- // global variables for the support of SLE solver libaries (set at compile-time)
 diff --git a/optimization/src/sgpp/optimization/operation/hash/OperationMultipleHierarchisationLinearClenshawCurtis.hpp b/optimization/src/sgpp/optimization/operation/hash/OperationMultipleHierarchisationLinearClenshawCurtis.hpp
 index 3a37754..f05f37b 100644
 --- a/optimization/src/sgpp/optimization/operation/hash/OperationMultipleHierarchisationLinearClenshawCurtis.hpp
