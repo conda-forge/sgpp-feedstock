@@ -1,4 +1,4 @@
-{% set version = "3.2.0" %}
+{% set version = "3.3.0" %}
 
 package:
   name: sgpp
@@ -7,7 +7,7 @@ package:
 source:
   fn: sgpp-{{ version }}.tar.gz
   url: https://github.com/SGpp/SGpp/archive/v{{ version }}.tar.gz
-  sha256: dab83587fd447f92ed8546eacaac6b8cbe65b8db5e860218c0fa2e42f776962d
+  sha256: ca4d5b79f315b425ce69b04940c141451a76848bf1bd7b96067217304c68e2d4
   patches:
     - osx.patch
 
