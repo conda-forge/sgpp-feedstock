@@ -20,11 +20,13 @@ requirements:
     - swig
     - {{ compiler('c') }}
     - {{ compiler('cxx') }}
+    - llvm-openmp  # [osx]
   host:
     - scons
     - setuptools
     - python
     - numpy
+    - llvm-openmp  # [osx]
   run:
     - python
     - {{ pin_compatible('numpy') }}
