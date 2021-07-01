@@ -1,3 +1,16 @@
+diff --git a/datadriven/src/sgpp/datadriven/algorithm/DBMatDatabase.cpp b/datadriven/src/sgpp/datadriven/algorithm/DBMatDatabase.cpp
+index c9e73fe..7ff8424 100644
+--- a/datadriven/src/sgpp/datadriven/algorithm/DBMatDatabase.cpp
++++ b/datadriven/src/sgpp/datadriven/algorithm/DBMatDatabase.cpp
+@@ -142,7 +142,7 @@ void DBMatDatabase::putDataMatrix(
+       json::ListNode& level =
+           dynamic_cast<json::ListNode&>(gridConfigEntry.addListAttr(keyGridLevel));
+       for (size_t i = 0; i < gridConfig.levelVector_.size(); i++) {
+-        level.addIdValue(gridConfig.levelVector_[i]);
++        level.addIdValue((uint64_t)gridConfig.levelVector_[i]);
+       }
+     } else {
+       gridConfigEntry.addIDAttr(keyGridLevel, static_cast<int64_t>(gridConfig.level_));
 diff --git a/site_scons/SGppConfigure.py b/site_scons/SGppConfigure.py
 index e5f5493..01525fa 100644
 --- a/site_scons/SGppConfigure.py
