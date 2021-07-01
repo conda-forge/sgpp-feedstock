@@ -27,6 +27,7 @@ requirements:
     - python
     - numpy
     - llvm-openmp  # [osx]
+    - gsl
   run:
     - python
     - {{ pin_compatible('numpy') }}
