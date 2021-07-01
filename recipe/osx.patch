@@ -7,7 +7,7 @@ index c9e73fe..7ff8424 100644
            dynamic_cast<json::ListNode&>(gridConfigEntry.addListAttr(keyGridLevel));
        for (size_t i = 0; i < gridConfig.levelVector_.size(); i++) {
 -        level.addIdValue(gridConfig.levelVector_[i]);
-+        level.addIdValue((uint64_t)gridConfig.levelVector_[i]);
++        level.addIdValue((uint64_t)(gridConfig.levelVector_[i]));
        }
      } else {
        gridConfigEntry.addIDAttr(keyGridLevel, static_cast<int64_t>(gridConfig.level_));
