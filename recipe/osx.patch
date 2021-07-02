@@ -1,5 +1,5 @@
 diff --git a/datadriven/src/sgpp/datadriven/algorithm/DBMatDatabase.cpp b/datadriven/src/sgpp/datadriven/algorithm/DBMatDatabase.cpp
-index c9e73fe..7ff8424 100644
+index c9e73fe..2137f28 100644
 --- a/datadriven/src/sgpp/datadriven/algorithm/DBMatDatabase.cpp
 +++ b/datadriven/src/sgpp/datadriven/algorithm/DBMatDatabase.cpp
 @@ -142,7 +142,7 @@ void DBMatDatabase::putDataMatrix(
@@ -7,10 +7,32 @@ index c9e73fe..7ff8424 100644
            dynamic_cast<json::ListNode&>(gridConfigEntry.addListAttr(keyGridLevel));
        for (size_t i = 0; i < gridConfig.levelVector_.size(); i++) {
 -        level.addIdValue(gridConfig.levelVector_[i]);
-+        level.addIdValue((uint64_t)(gridConfig.levelVector_[i]));
++        level.addIdValue(static_cast<uint64_t>(gridConfig.levelVector_[i]));
        }
      } else {
        gridConfigEntry.addIDAttr(keyGridLevel, static_cast<int64_t>(gridConfig.level_));
+diff --git a/datadriven/src/sgpp/datadriven/datamining/modules/visualization/VisualizerClassification.cpp b/datadriven/src/sgpp/datadriven/datamining/modules/visualization/VisualizerClassification.cpp
+index 0ef61e1..c1e161d 100644
+--- a/datadriven/src/sgpp/datadriven/datamining/modules/visualization/VisualizerClassification.cpp
++++ b/datadriven/src/sgpp/datadriven/datamining/modules/visualization/VisualizerClassification.cpp
+@@ -564,7 +564,7 @@ void VisualizerClassification::storeHeatmapJsonClassification(DataMatrix &matrix
+       jsonOutput["data"][graphIndex]["marker"].
+       addIDAttr("symbol", "\"star-dot\"");
+       jsonOutput["data"][graphIndex]["marker"].
+-      addIDAttr("size", static_cast<size_t>(10));
++      addIDAttr("size", static_cast<uint64_t>(10));
+       jsonOutput["data"][graphIndex]["marker"].
+       addDictAttr("line");
+       jsonOutput["data"][graphIndex]["marker"]["line"].
+@@ -846,7 +846,7 @@ void VisualizerClassification::storeHeatmapJsonClassification(DataMatrix &matrix
+     jsonOutput["data"][graphIndex].addDictAttr("marker");
+     jsonOutput["data"][graphIndex]["marker"].addIDAttr("symbol", "\"star-dot\"");
+     jsonOutput["data"][graphIndex]["marker"].addIDAttr("size",
+-      static_cast<size_t>(10));
++      static_cast<uint64_t>(10));
+     jsonOutput["data"][graphIndex]["marker"].addDictAttr("line");
+     jsonOutput["data"][graphIndex]["marker"]["line"].addIDAttr("color", "\"blue\"");
+     jsonOutput["data"][graphIndex]["marker"]["line"].addIDAttr("width", 1.5);
 diff --git a/site_scons/SGppConfigure.py b/site_scons/SGppConfigure.py
 index e5f5493..01525fa 100644
 --- a/site_scons/SGppConfigure.py
