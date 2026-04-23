@@ -12,13 +12,14 @@ source:
     - osx.patch
 
 build:
-  number: 1
+  number: 2
   skip: true  # [win]
 
 requirements:
   build:
     - swig
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('cxx') }}
   host:
     - scons
@@ -27,7 +28,6 @@ requirements:
     - numpy
   run:
     - python
-    - {{ pin_compatible('numpy') }}
     - scipy
 
 test:
